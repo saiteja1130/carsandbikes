@@ -40,18 +40,18 @@ const WhyChooseUs = () => {
   ];
 
   // Section entrance animation
-  const sectionVariants = {
+   const sectionVariants = {
     hidden: {
       opacity: 0,
-      y: 100,
+      y: 80,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1.2,
+        duration: 0.8,
         ease: [0.25, 0.46, 0.45, 0.94],
-        staggerChildren: 0.15,
+        staggerChildren: 0.08,
       },
     },
   };
@@ -61,8 +61,8 @@ const WhyChooseUs = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.06,
+        delayChildren: 0.15,
       },
     },
   };
@@ -70,15 +70,15 @@ const WhyChooseUs = () => {
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60,
-      scale: 0.9 
+      y: 40,
+      scale: 0.95,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: [0.23, 1, 0.32, 1],
       },
     },
@@ -86,9 +86,9 @@ const WhyChooseUs = () => {
 
   const floatingVariants = {
     floating: {
-      y: [0, -20, 0],
+      y: [0, -15, 0],
       transition: {
-        duration: 3,
+        duration: 2,
         repeat: Infinity,
         ease: "easeInOut"
       }
@@ -97,9 +97,9 @@ const WhyChooseUs = () => {
 
   const pulseVariants = {
     pulse: {
-      scale: [1, 1.1, 1],
+      scale: [1, 1.05, 1],
       transition: {
-        duration: 2,
+        duration: 1.5,
         repeat: Infinity,
         ease: "easeInOut"
       }
@@ -114,7 +114,7 @@ const WhyChooseUs = () => {
         "0 0 20px rgba(239, 68, 68, 0.3)"
       ],
       transition: {
-        duration: 3,
+        duration: 2,
         repeat: Infinity,
         ease: "easeInOut"
       }
@@ -127,7 +127,7 @@ const WhyChooseUs = () => {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.1 }}
     >
       {/* Animated Background with Red Theme Only */}
       <div className="absolute inset-0">
@@ -185,19 +185,19 @@ const WhyChooseUs = () => {
           {/* Text Content */}
           <motion.div variants={itemVariants}>
             <motion.span
-              className="text-red-500 font-bold text-sm uppercase tracking-wider mb-4 block"
+              className="text-red-500 font-industrial font-bold text-sm uppercase tracking-wider mb-4 block"
               variants={itemVariants}
             >
               Why Choose Us
             </motion.span>
 
             <motion.h2
-              className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8"
+              className="text-5xl md:text-6xl lg:text-7xl font-tech font-black text-white leading-tight mb-8"
               variants={itemVariants}
             >
               The{" "}
               <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600 font-tech"
                 animate={{
                   backgroundPosition: ["0% 50%", "100% 50%"],
                 }}
@@ -216,7 +216,7 @@ const WhyChooseUs = () => {
             </motion.h2>
 
             <motion.p
-              className="text-xl text-gray-300 mb-12 leading-relaxed"
+              className="text-xl font-modern text-gray-300 mb-12 leading-relaxed"
               variants={itemVariants}
             >
               Discover why thousands of vehicle owners trust FixinMoto for 
@@ -260,7 +260,7 @@ const WhyChooseUs = () => {
                     >
                       <feature.icon className="text-white text-xl" />
                     </motion.div>
-                    <span className="text-white font-semibold text-lg leading-tight flex-1">
+                    <span className="text-white font-modern font-semibold text-lg leading-tight flex-1">
                       {feature.text}
                     </span>
                   </div>
@@ -297,10 +297,10 @@ const WhyChooseUs = () => {
                     >
                       <stat.icon className="text-red-500 text-2xl" />
                     </motion.div>
-                    <div className="text-3xl md:text-4xl font-black text-red-500 mb-2">
+                    <div className="text-3xl md:text-4xl font-tech font-black text-red-500 mb-2">
                       {stat.number}
                     </div>
-                    <div className="text-xs text-gray-400 uppercase tracking-wider font-semibold">
+                    <div className="text-xs font-industrial text-gray-400 uppercase tracking-wider font-semibold">
                       {stat.label}
                     </div>
                   </div>
@@ -320,7 +320,7 @@ const WhyChooseUs = () => {
                   boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.6)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative px-10 py-5 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden"
+                className="relative px-10 py-5 bg-gradient-to-r from-red-600 to-red-700 text-white font-industrial font-bold text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden"
               >
                 <span className="block skew-x-12 relative z-10">
                   Book Service Now
@@ -346,7 +346,7 @@ const WhyChooseUs = () => {
                   boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative px-10 py-5 bg-transparent text-white font-bold text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden border-2 border-red-500 hover:bg-red-500"
+                className="relative px-10 py-5 bg-transparent text-white font-industrial font-bold text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden border-2 border-red-500 hover:bg-red-500"
               >
                 <span className="block skew-x-12 relative z-10">
                   Free Consultation
@@ -381,8 +381,8 @@ const WhyChooseUs = () => {
                   variants={itemVariants}
                 >
                   <div className="bg-gradient-to-r from-red-600/90 to-red-700/90 p-6 rounded-2xl backdrop-blur-sm border border-red-500/20">
-                    <h3 className="text-white font-bold text-xl mb-2">Premium Service Guaranteed</h3>
-                    <p className="text-white/90 text-sm">Expert technicians using latest technology</p>
+                    <h3 className="text-white font-tech font-bold text-xl mb-2">Premium Service Guaranteed</h3>
+                    <p className="text-white/90 font-modern text-sm">Expert technicians using latest technology</p>
                   </div>
                 </motion.div>
               </div>
@@ -401,7 +401,7 @@ const WhyChooseUs = () => {
                 variants={pulseVariants}
                 animate="pulse"
               >
-                <span className="text-white font-black text-sm">15+</span>
+                <span className="text-white font-tech font-black text-sm">15+</span>
               </motion.div>
 
               {/* Star Rating - Red Only */}
@@ -412,8 +412,8 @@ const WhyChooseUs = () => {
               >
                 <div className="flex items-center gap-2">
                   <FaStar className="text-white text-lg" />
-                  <span className="text-white font-bold text-lg">4.9/5</span>
-                  <span className="text-white/80 text-sm">Rating</span>
+                  <span className="text-white font-tech font-bold text-lg">4.9/5</span>
+                  <span className="text-white/80 font-modern text-sm">Rating</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -440,7 +440,7 @@ const WhyChooseUs = () => {
                 variants={pulseVariants}
                 animate="pulse"
               >
-                <span className="text-white text-xs font-bold">NEW</span>
+                <span className="text-white font-industrial text-xs font-bold">NEW</span>
               </motion.div>
             </motion.div>
 

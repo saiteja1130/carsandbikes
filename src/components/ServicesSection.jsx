@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 export const servicesData = {
   car: [
@@ -507,42 +508,46 @@ const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState("car");
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(0);
+  const navigate = useNavigate();
 
   const activeGroups = servicesData[activeTab];
 
-  // Get current category services
-  const currentServices = activeGroups[selectedCategory]?.services.map(
-    (service) => ({
+  // Get current category services and limit to 8
+  const currentServices = activeGroups[selectedCategory]?.services
+    .map((service) => ({
       category: activeGroups[selectedCategory].category,
       title: service,
-    })
-  );
+    }))
+    .slice(0, 8); // Only show first 8 services
+
+  // Check if there are more services available
+  const hasMoreServices = activeGroups[selectedCategory]?.services.length > 8;
 
   // Section entrance animation
   const sectionVariants = {
     hidden: {
       opacity: 0,
-      y: 100,
+      y: 80,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1.2,
+        duration: 0.8,
         ease: [0.25, 0.46, 0.45, 0.94],
-        staggerChildren: 0.15,
+        staggerChildren: 0.08,
       },
     },
   };
 
-  // Staggered animations for children
+  // Staggered animations for children - FASTER
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.06,
+        delayChildren: 0.15,
       },
     },
   };
@@ -550,39 +555,7 @@ const ServicesSection = () => {
   const cardVariants = {
     hidden: {
       opacity: 0,
-      y: 60,
-      scale: 0.9,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.23, 1, 0.32, 1],
-      },
-    },
-  };
-
-  const tabVariants = {
-    hidden: {
-      opacity: 0,
-      y: -30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const categoryTabVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
+      y: 40,
       scale: 0.95,
     },
     visible: {
@@ -591,9 +564,53 @@ const ServicesSection = () => {
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: [0.23, 1, 0.32, 1],
       },
     },
+  };
+
+  const tabVariants = {
+    hidden: {
+      opacity: 0,
+      y: -20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const categoryTabVariants = {
+    hidden: {
+      opacity: 0,
+      y: 15,
+      scale: 0.97,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Function to handle View More click
+  const handleViewMore = () => {
+    // Navigate to all services page with current category info
+    navigate('/all-services', { 
+      state: { 
+        activeTab, 
+        selectedCategory,
+        categoryName: activeGroups[selectedCategory]?.category 
+      } 
+    });
   };
 
   return (
@@ -602,7 +619,7 @@ const ServicesSection = () => {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.3 }}
+      viewport={{ once: false, amount: 0.1 }}
     >
       {/* Background Pattern */}
       <motion.div
@@ -619,17 +636,16 @@ const ServicesSection = () => {
         {/* Section Header */}
         <motion.div variants={tabVariants} className="text-center mb-20">
           <motion.h2
-            className="text-5xl md:text-7xl font-black text-white mb-6"
+            className="text-5xl md:text-7xl font-tech font-black text-white mb-6"
             variants={tabVariants}
           >
             Our <span className="text-red-500">Services</span>
           </motion.h2>
           <motion.p
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-xl font-modern text-gray-400 max-w-2xl mx-auto"
             variants={tabVariants}
           >
-            Premium automotive care with cutting-edge technology and expert
-            craftsmanship
+            Premium automotive care with cutting-edge technology and expert craftsmanship
           </motion.p>
         </motion.div>
 
@@ -646,7 +662,7 @@ const ServicesSection = () => {
                   setActiveTab(tab);
                   setSelectedCategory(0);
                 }}
-                className={`relative px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
+                className={`relative px-8 py-4 rounded-xl font-industrial font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
                   activeTab === tab
                     ? "text-white"
                     : "text-gray-500 hover:text-gray-300"
@@ -669,6 +685,7 @@ const ServicesSection = () => {
             ))}
           </div>
         </motion.div>
+
         {activeGroups?.length > 0 && (
           <motion.div
             className="flex justify-center mb-12 flex-wrap gap-4"
@@ -680,7 +697,7 @@ const ServicesSection = () => {
                 key={group.category}
                 variants={categoryTabVariants}
                 onClick={() => setSelectedCategory(index)}
-                className={`px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 min-w-[200px] text-center ${
+                className={`px-8 py-4 rounded-xl font-industrial font-semibold text-base transition-all duration-300 min-w-[200px] text-center ${
                   selectedCategory === index
                     ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-2xl shadow-red-500/40"
                     : "bg-gray-900/80 text-gray-300 hover:bg-gray-800 hover:text-white border border-gray-700"
@@ -700,7 +717,7 @@ const ServicesSection = () => {
           </motion.div>
         )}
 
-        {/* Services Grid */}
+        {/* Services Grid - Limited to 8 services */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
           variants={containerVariants}
@@ -771,7 +788,7 @@ const ServicesSection = () => {
                         </motion.div>
 
                         <motion.h3
-                          className="text-white font-bold text-lg leading-tight flex-1"
+                          className="text-white font-modern font-bold text-lg leading-tight flex-1"
                           initial={false}
                           animate={{
                             color:
@@ -784,7 +801,7 @@ const ServicesSection = () => {
                       </div>
 
                       <motion.span
-                        className="text-red-400 text-xs font-semibold tracking-wider uppercase block mt-2"
+                        className="text-red-400 font-industrial text-xs font-semibold tracking-wider uppercase block mt-2"
                         initial={false}
                         animate={{
                           color: hoveredCard === index ? "#f87171" : "#f87171",
@@ -812,23 +829,40 @@ const ServicesSection = () => {
           </AnimatePresence>
         </motion.div>
 
+        {/* View More Button - Only show if there are more services */}
+        {hasMoreServices && (
+          <motion.div className="text-center mt-12" variants={tabVariants}>
+            <motion.button
+              onClick={handleViewMore}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.4)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="px-12 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-industrial font-bold rounded-xl border border-red-500/30 relative overflow-hidden group"
+            >
+              <span className="relative z-10">VIEW MORE SERVICES</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.4 }}
+              />
+            </motion.button>
+          </motion.div>
+        )}
+
         {/* CTA Button */}
-        <motion.div className="text-center mt-16" variants={tabVariants}>
+        <motion.div className="text-center mt-8" variants={tabVariants}>
           <motion.button
             whileHover={{
               scale: 1.05,
               boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="px-12 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-xl border border-red-500/30 relative overflow-hidden group"
+            className="px-12 py-4 bg-transparent text-white font-industrial font-bold rounded-xl border-2 border-red-500 hover:bg-red-500 transition-all duration-300"
           >
-            <span className="relative z-10">VIEW ALL SERVICES</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.4 }}
-            />
+            <span className="relative z-10">BOOK APPOINTMENT</span>
           </motion.button>
         </motion.div>
       </div>

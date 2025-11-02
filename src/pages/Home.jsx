@@ -9,8 +9,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
     },
   },
 };
@@ -26,7 +26,7 @@ const textVariants = {
     y: 0,
     filter: "blur(0px)",
     transition: {
-      duration: 1.2,
+      duration: 0.8,
       ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
@@ -38,7 +38,7 @@ const buttonVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: "easeOut",
     },
   },
@@ -46,7 +46,7 @@ const buttonVariants = {
     scale: 1.05,
     boxShadow: "0 10px 30px -10px rgba(220, 38, 38, 0.5)",
     transition: {
-      duration: 0.3,
+      duration: 0.2,
       ease: "easeInOut",
     },
   },
@@ -80,9 +80,9 @@ const Home = () => {
               opacity: [0, 0.5, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 2 + Math.random() * 2,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: Math.random() * 1,
             }}
           />
         ))}
@@ -108,7 +108,7 @@ const Home = () => {
             opacity: [0.5, 1, 0.5],
           }}
           transition={{
-            duration: 3,
+            duration: 2,
             repeat: Infinity,
           }}
         />
@@ -120,7 +120,7 @@ const Home = () => {
             opacity: [0.3, 0.7, 0.3],
           }}
           transition={{
-            duration: 4,
+            duration: 3,
             repeat: Infinity,
           }}
         />
@@ -137,16 +137,16 @@ const Home = () => {
           >
             <motion.h1
               variants={textVariants}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-6"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-tech font-black text-white leading-tight mb-6"
             >
               Drive{" "}
               <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700"
-                whileInView={{
+                className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700 font-tech"
+                animate={{
                   backgroundPosition: ["0% 50%", "100% 50%"],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 1.5,
                   repeat: Infinity,
                   repeatType: "reverse",
                 }}
@@ -163,14 +163,14 @@ const Home = () => {
               className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-4 mb-8"
             >
               <div className="w-1 h-12 bg-red-500 hidden lg:block"></div>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-tech font-bold text-white">
                 with <span className="text-red-500">FixinMoto</span>
               </h2>
             </motion.div>
 
             <motion.p
               variants={textVariants}
-              className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl font-modern text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed"
             >
               Your car deserves the{" "}
               <span className="text-red-400 font-semibold">best care</span> —
@@ -185,14 +185,14 @@ const Home = () => {
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="relative px-12 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold text-lg rounded-xl overflow-hidden group"
+                className="relative px-12 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-industrial font-bold text-lg rounded-xl overflow-hidden group"
               >
                 <span className="relative z-10">Appointment Now</span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                 />
               </motion.button>
 
@@ -200,7 +200,7 @@ const Home = () => {
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="px-12 py-4 border-2 border-red-600 text-white font-bold text-lg rounded-xl hover:bg-red-600 transition-colors duration-300"
+                className="px-12 py-4 border-2 border-red-600 text-white font-industrial font-bold text-lg rounded-xl hover:bg-red-600 transition-colors duration-300"
               >
                 Our Services
               </motion.button>
@@ -214,7 +214,7 @@ const Home = () => {
             y: [0, 10, 0],
           }}
           transition={{
-            duration: 2,
+            duration: 1.5,
             repeat: Infinity,
           }}
         >
@@ -225,7 +225,7 @@ const Home = () => {
                 y: [0, 12, 0],
               }}
               transition={{
-                duration: 2,
+                duration: 1.5,
                 repeat: Infinity,
               }}
             />
@@ -233,13 +233,23 @@ const Home = () => {
         </motion.div>
       </motion.section>
 
+      {/* Services Section with instant animation */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false, amount: 0.1 }}
       >
         <ServicesSection />
+      </motion.div>
+
+      {/* WhyChooseUs Section with instant animation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false, amount: 0.1 }}
+      >
         <WhyChooseUs />
       </motion.div>
     </div>
