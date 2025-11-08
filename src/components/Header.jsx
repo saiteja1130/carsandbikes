@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX, FiUser, FiCalendar, FiInfo } from "react-icons/fi";
+import {
+  FiMenu,
+  FiX,
+  FiUser,
+  FiCalendar,
+  FiInfo,
+  FiHome,
+} from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,9 +30,9 @@ const Header = () => {
   }, [isOpen]);
 
   const menuItems = [
-    { name: "About Us", icon: FiInfo, href: "#about" },
-    { name: "Appointment", icon: FiCalendar, href: "#appointment" },
-    { name: "Services", icon: FiMenu, href: "#services" },
+    { name: "Home", icon: FiHome, href: "" },
+    { name: "About Us", icon: FiInfo, href: "about" },
+    { name: "Services", icon: FiMenu, href: "services" },
   ];
 
   const containerVariants = {
@@ -94,32 +102,34 @@ const Header = () => {
     >
       <nav className="container mx-auto flex items-center justify-between px-4 md:px-6">
         {/* Logo with Animation - Using tech font */}
-        <motion.div
-          className="text-white font-tech font-black text-2xl sm:text-3xl relative group cursor-pointer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span className="relative z-10">FixinMoto</span>
-          <motion.span
-            className="text-red-500 ml-1"
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 5, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
-            .
-          </motion.span>
-          {/* Animated underline */}
+        <Link to="/">
           <motion.div
-            className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full group-hover:w-full transition-all duration-300"
-            whileHover={{ width: "100%" }}
-          />
-        </motion.div>
+            className="text-white font-tech font-black text-2xl sm:text-3xl relative group cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="relative z-10">FixinMoto</span>
+            <motion.span
+              className="text-red-500 ml-1"
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 5, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            >
+              .
+            </motion.span>
+            {/* Animated underline */}
+            <motion.div
+              className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full group-hover:w-full transition-all duration-300"
+              whileHover={{ width: "100%" }}
+            />
+          </motion.div>
+        </Link>
 
         {/* Desktop Menu - Using modern font */}
         <motion.ul
@@ -136,14 +146,16 @@ const Header = () => {
               onMouseEnter={() => setActiveItem(item.name)}
               onMouseLeave={() => setActiveItem(null)}
             >
-              <motion.div
-                className="flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 group-hover:bg-red-500/10 group-hover:text-red-400"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <item.icon className="text-lg" />
-                <span>{item.name}</span>
-              </motion.div>
+              <Link to={`/${item.href}`}>
+                <motion.div
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 group-hover:bg-red-500/10 group-hover:text-red-400"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <item.icon className="text-lg" />
+                  <span>{item.name}</span>
+                </motion.div>
+              </Link>
 
               {/* Active indicator */}
               {activeItem === item.name && (
@@ -158,25 +170,6 @@ const Header = () => {
             </motion.li>
           ))}
         </motion.ul>
-
-        {/* Login Button (Desktop) - Using industrial font */}
-        <motion.button
-          className="hidden md:flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-6 py-3 rounded-xl font-industrial font-semibold transition-all duration-300 shadow-lg shadow-red-500/20 relative overflow-hidden group"
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0 10px 30px -10px rgba(220, 38, 38, 0.5)",
-          }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <FiUser className="text-lg" />
-          <span className="relative z-10">Login</span>
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
-            initial={{ x: "-100%" }}
-            whileHover={{ x: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-        </motion.button>
 
         {/* Mobile Toggle - Using industrial font */}
         <motion.button
@@ -211,7 +204,6 @@ const Header = () => {
         </motion.button>
       </nav>
 
-      {/* Mobile Menu Overlay - Using modern font */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -230,73 +222,31 @@ const Header = () => {
             {/* Menu Items */}
             <motion.ul className="flex flex-col items-center gap-6 relative z-10">
               {menuItems.map((item, index) => (
-                <motion.li
-                  key={item.name}
-                  variants={mobileItemVariants}
-                  className="cursor-pointer group"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <motion.div
-                    className="flex items-center gap-4 px-8 py-4 rounded-2xl bg-black/50 backdrop-blur-sm border border-red-500/20 hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 min-w-[200px] text-center"
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: "rgba(239, 68, 68, 0.1)",
-                    }}
-                    whileTap={{ scale: 0.95 }}
+                <Link to={`/${item.href}`}>
+                  <motion.li
+                    key={item.name}
+                    variants={mobileItemVariants}
+                    className="cursor-pointer group"
+                    onClick={() => setIsOpen(false)}
                   >
-                    <item.icon className="text-red-500 text-xl" />
-                    <span className="text-white group-hover:text-red-400 transition-colors duration-300">
-                      {item.name}
-                    </span>
-                  </motion.div>
-                </motion.li>
+                    <motion.div
+                      className="flex items-center gap-4 px-8 py-4 rounded-2xl bg-black/50 backdrop-blur-sm border border-red-500/20 hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 min-w-[200px] text-center"
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "rgba(239, 68, 68, 0.1)",
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <item.icon className="text-red-500 text-xl" />
+                      <span className="text-white group-hover:text-red-400 transition-colors duration-300">
+                        {item.name}
+                      </span>
+                    </motion.div>
+                  </motion.li>
+                </Link>
               ))}
             </motion.ul>
-
-            {/* Mobile Login Button - Using industrial font */}
-            <motion.button
-              className="flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-4 rounded-2xl font-industrial font-semibold text-lg transition-all duration-300 shadow-lg shadow-red-500/30 relative overflow-hidden group mt-4"
-              variants={mobileItemVariants}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 15px 40px -10px rgba(220, 38, 38, 0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsOpen(false)}
-            >
-              <FiUser className="text-xl" />
-              <span className="relative z-10">Login</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
-
-            {/* Close Hint - Using modern font */}
-            <motion.div
-              className="absolute bottom-8 text-gray-400 text-sm font-modern"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Tap anywhere to close
-            </motion.div>
           </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Click outside to close */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="fixed inset-0 z-30"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-          />
         )}
       </AnimatePresence>
     </motion.header>

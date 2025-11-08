@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import bgCar from "../../assets/homeBanner.jpg";
+import bgCar from "../../assets/homebanner2.avif";
 import ServicesSection from "../components/ServicesSection";
 import WhyChooseUs from "../components/WhyChooseUs";
 import WhatToExpect from "../components/WhatToExpect";
 import GetInTouch from "../components/GetInTouch";
+import LocationSelector from "../components/LocationSelector";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -97,7 +98,7 @@ const Home = () => {
       >
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80')`, }}
+          style={{ backgroundImage: `url('${bgCar}')` }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80"></div>
@@ -263,6 +264,15 @@ const Home = () => {
         viewport={{ once: false, amount: 0.1 }}
       >
         <WhyChooseUs />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false, amount: 0.1 }}
+      >
+        <LocationSelector />
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}

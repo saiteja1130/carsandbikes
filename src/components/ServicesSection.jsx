@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
@@ -509,20 +509,42 @@ const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState("car");
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(0);
+  // NEW STATE: Control the number of cards shown based on screen size
+  const [maxServicesToShow, setMaxServicesToShow] = useState(8); 
   const navigate = useNavigate();
 
   const activeGroups = servicesData[activeTab];
 
-  // Get current category services and limit to 8
+  // 1. 🛠️ useEffect for Responsive Card Limit
+  useEffect(() => {
+    // Function to update the maximum number of services to show
+    const updateMaxServices = () => {
+      // Set to 4 for screens smaller than the 'sm' breakpoint (640px), otherwise 8
+      setMaxServicesToShow(window.innerWidth < 640 ? 4 : 8); 
+    };
+
+    // Initial check
+    updateMaxServices();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateMaxServices);
+
+    // Cleanup function
+    return () => window.removeEventListener("resize", updateMaxServices);
+  }, []); // Run only once on mount to set up the listener
+
+
+  // Get current category services and limit to 4/8 based on maxServicesToShow
   const currentServices = activeGroups[selectedCategory]?.services
     .map((service) => ({
       category: activeGroups[selectedCategory].category,
       title: service,
     }))
-    .slice(0, 8); // Only show first 8 services
+    // 2. 🎯 Use maxServicesToShow for the slice limit
+    .slice(0, maxServicesToShow); 
 
-  // Check if there are more services available
-  const hasMoreServices = activeGroups[selectedCategory]?.services.length > 8;
+  // Check if there are more services available (compares to the responsive limit)
+  const hasMoreServices = activeGroups[selectedCategory]?.services.length > maxServicesToShow;
 
   // Section entrance animation
   const sectionVariants = {
@@ -605,7 +627,7 @@ const ServicesSection = () => {
   // Function to handle View More click
   const handleViewMore = () => {
     // Navigate to all services page with current category info
-    navigate("/all-services", {
+    navigate("/services", {
       state: {
         activeTab,
         selectedCategory,
@@ -727,7 +749,7 @@ const ServicesSection = () => {
           )}
         </AnimatePresence>
 
-        {/* Services Grid - Limited to 8 services */}
+        {/* Services Grid - Limited to 4 on mobile, 8 on desktop */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" // **UPDATED: grid layout for small screens, gap sizing**
           variants={containerVariants}
