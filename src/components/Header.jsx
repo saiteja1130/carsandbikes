@@ -144,7 +144,7 @@ const Header = () => {
                 <item.icon className="text-lg" />
                 <span>{item.name}</span>
               </motion.div>
-              
+
               {/* Active indicator */}
               {activeItem === item.name && (
                 <motion.div
