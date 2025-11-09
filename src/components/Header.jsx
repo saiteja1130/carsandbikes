@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FiMenu,
-  FiX,
-  FiUser,
-  FiCalendar,
-  FiInfo,
-  FiHome,
-} from "react-icons/fi";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { FiMenu, FiX, FiInfo, FiHome, FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
+import Logo from "../../assets/logo.jpg";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,15 +17,14 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Disable scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
-
   const menuItems = [
     { name: "Home", icon: FiHome, href: "" },
     { name: "About Us", icon: FiInfo, href: "about" },
     { name: "Services", icon: FiMenu, href: "services" },
+    { name: "Contact Now", icon: FiPhoneCall, href: "contact-us" },
   ];
 
   const containerVariants = {
@@ -56,7 +48,6 @@ const Header = () => {
       },
     },
   };
-
   const mobileMenuVariants = {
     closed: {
       opacity: 0,
@@ -101,14 +92,13 @@ const Header = () => {
       }`}
     >
       <nav className="container mx-auto flex items-center justify-between px-4 md:px-6">
-        {/* Logo with Animation - Using tech font */}
         <Link to="/">
           <motion.div
             className="text-white font-tech font-black text-2xl sm:text-3xl relative group cursor-pointer"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">FixinMoto</span>
+            <span className="relative z-10">DetailXMechanic</span>       
             <motion.span
               className="text-red-500 ml-1"
               animate={{
@@ -121,57 +111,53 @@ const Header = () => {
                 repeatType: "reverse",
               }}
             >
-              .
+                            .          
             </motion.span>
-            {/* Animated underline */}
             <motion.div
               className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full group-hover:w-full transition-all duration-300"
               whileHover={{ width: "100%" }}
             />
           </motion.div>
         </Link>
-
-        {/* Desktop Menu - Using modern font */}
-        <motion.ul
-          className="hidden md:flex gap-4 text-white font-modern font-medium text-base lg:text-lg"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {menuItems.map((item, index) => (
-            <motion.li
-              key={item.name}
-              variants={itemVariants}
-              className="relative cursor-pointer group"
-              onMouseEnter={() => setActiveItem(item.name)}
-              onMouseLeave={() => setActiveItem(null)}
-            >
-              <Link to={`/${item.href}`}>
-                <motion.div
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 group-hover:bg-red-500/10 group-hover:text-red-400"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <item.icon className="text-lg" />
-                  <span>{item.name}</span>
-                </motion.div>
-              </Link>
-
-              {/* Active indicator */}
-              {activeItem === item.name && (
-                <motion.div
-                  className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full"
-                  layoutId="activeIndicator"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.3, type: "spring" }}
-                />
-              )}
-            </motion.li>
-          ))}
-        </motion.ul>
-
-        {/* Mobile Toggle - Using industrial font */}
+        <LayoutGroup>
+          <motion.ul
+            className="hidden md:flex gap-4 text-white font-modern font-medium text-base lg:text-lg"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {menuItems.map((item, index) => (
+              <motion.li
+                key={item.name}
+                variants={itemVariants}
+                className="relative cursor-pointer group"
+                onMouseEnter={() => setActiveItem(item.name)}
+                onMouseLeave={() => setActiveItem(null)}
+                layout
+              >
+                <Link to={`/${item.href}`}>
+                  <motion.div
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 group-hover:bg-red-500/10 group-hover:text-red-400"
+                    whileHover={{ scale: 1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                                        <item.icon className="text-lg" />       
+                                <span>{item.name}</span>                 
+                  </motion.div>
+                </Link>
+                {activeItem === item.name && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full"
+                    layoutId="activeIndicator"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3, type: "spring" }}
+                  />
+                )}
+              </motion.li>
+            ))}
+          </motion.ul>
+        </LayoutGroup>
         <motion.button
           className="md:hidden text-white text-2xl relative z-[100] w-12 h-12 flex items-center justify-center rounded-xl bg-red-500/10 hover:bg-red-500/20 transition-all duration-300 font-industrial"
           onClick={() => setIsOpen(!isOpen)}
@@ -187,7 +173,7 @@ const Header = () => {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <FiX />
+                                <FiX />             
               </motion.div>
             ) : (
               <motion.div
@@ -197,13 +183,12 @@ const Header = () => {
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <FiMenu />
+                                <FiMenu />           
               </motion.div>
             )}
           </AnimatePresence>
         </motion.button>
       </nav>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -213,13 +198,10 @@ const Header = () => {
             animate="open"
             exit="closed"
           >
-            {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-red-500/20 to-transparent"></div>
               <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-t from-red-500/10 to-transparent"></div>
             </div>
-
-            {/* Menu Items */}
             <motion.ul className="flex flex-col items-center gap-6 relative z-10">
               {menuItems.map((item, index) => (
                 <Link to={`/${item.href}`}>
@@ -237,9 +219,9 @@ const Header = () => {
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <item.icon className="text-red-500 text-xl" />
+                      <item.icon className="text-red-500 text-xl" />           
                       <span className="text-white group-hover:text-red-400 transition-colors duration-300">
-                        {item.name}
+                                                {item.name}                   
                       </span>
                     </motion.div>
                   </motion.li>

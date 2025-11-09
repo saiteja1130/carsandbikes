@@ -70,7 +70,7 @@ const LocationSection = () => {
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="FixinMoto Miyapur Branch"
+                  title="DetailXMechanic Miyapur Branch"
                   className="w-full h-full"
                 ></iframe>
               </div>

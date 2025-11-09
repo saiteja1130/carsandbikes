@@ -11,6 +11,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 import mainImage from "../../assets/whychooseus.jpg";
+import { Link } from "react-router-dom";
 // import smallImage from "../../assets/whychoose1.jpg";
 
 const WhyChooseUs = () => {
@@ -219,7 +220,7 @@ const WhyChooseUs = () => {
                   backgroundSize: "200% 200%",
                 }}
               >
-                FixinMoto
+                DetailXMechanic
               </motion.span>{" "}
               Difference
             </motion.h2>
@@ -228,7 +229,7 @@ const WhyChooseUs = () => {
               className="text-lg sm:text-xl font-modern text-gray-300 mb-8 leading-relaxed"
               variants={itemVariants}
             >
-              Discover why thousands of vehicle owners trust FixinMoto for
+              Discover why thousands of vehicle owners trust DetailXMechanic for
               premium automotive care with unmatched expertise and cutting-edge
               technology.
             </motion.p>
@@ -322,50 +323,52 @@ const WhyChooseUs = () => {
             </motion.div>
 
             {/* Parallelogram Style Buttons - Red Only */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6"
-              variants={containerVariants}
-            >
-              <motion.button
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.6)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="relative px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-red-600 to-red-700 text-white font-industrial font-bold text-base sm:text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden"
+            <Link to="/booknow">
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6"
+                variants={containerVariants}
               >
-                <span className="block skew-x-12 relative z-10">
-                  Book Service Now
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-                {/* Red Shine Effect */}
-                <motion.div
-                  className="absolute top-0 left-[-100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-12deg]"
-                  whileHover={{ left: "100%" }}
-                  transition={{ duration: 0.8 }}
-                />
-              </motion.button>
+                <motion.button
+                  variants={itemVariants}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.6)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-red-600 to-red-700 text-white font-industrial font-bold text-base sm:text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden"
+                >
+                  <span className="block skew-x-12 relative z-10">
+                    Book Service Now
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  {/* Red Shine Effect */}
+                  <motion.div
+                    className="absolute top-0 left-[-100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-12deg]"
+                    whileHover={{ left: "100%" }}
+                    transition={{ duration: 0.8 }}
+                  />
+                </motion.button>
 
-              <motion.button
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.4)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="relative px-6 sm:px-8 py-4 sm:py-5 bg-transparent text-white font-industrial font-bold text-base sm:text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden border-2 border-red-500 hover:bg-red-500"
-              >
-                <span className="block skew-x-12 relative z-10">
-                  Free Consultation
-                </span>
-              </motion.button>
-            </motion.div>
+                <motion.button
+                  variants={itemVariants}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.4)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative px-6 sm:px-8 py-4 sm:py-5 bg-transparent text-white font-industrial font-bold text-base sm:text-lg skew-x-[-12deg] transform transition-all duration-300 group overflow-hidden border-2 border-red-500 hover:bg-red-500"
+                >
+                  <span className="block skew-x-12 relative z-10">
+                    Free Consultation
+                  </span>
+                </motion.button>
+              </motion.div>
+            </Link>
           </motion.div>
 
           {/* Enhanced Images Section */}
@@ -383,7 +386,7 @@ const WhyChooseUs = () => {
                 <img
                   src={mainImage}
                   className="w-full h-full object-cover"
-                  alt="FixinMoto Premium Service"
+                  alt="Premium Service"
                 />
                 {/* Red Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-red-900/10 to-black/30"></div>

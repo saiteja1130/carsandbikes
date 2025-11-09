@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiCalendar, FiTool, FiCheckCircle, FiThumbsUp } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const WhatToExpect = () => {
   const expectations = [
@@ -77,10 +78,11 @@ const WhatToExpect = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-tech font-black text-white mb-6">
-            What to Expect with <span className="text-red-500">FixinMoto</span>
+            What to Expect with{" "}
+            <span className="text-red-500">DetailXMechanic</span>
           </h2>
           <p className="text-xl font-modern text-gray-300 max-w-3xl mx-auto">
-            A seamless experience from booking to driving away with confidence
+            Premium detailing. Expert repairs. Hassle-free service
           </p>
         </motion.div>
 
@@ -166,34 +168,36 @@ const WhatToExpect = () => {
         </motion.div>
 
         {/* CTA Section */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <motion.button
-            className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-xl font-industrial font-bold text-lg transition-all duration-300 shadow-lg shadow-red-500/20 relative overflow-hidden group text-sm md:text-[16px]"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 15px 40px -10px rgba(220, 38, 38, 0.4)",
-            }}
-            whileTap={{ scale: 0.95 }}
+        <Link to="/booknow">
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
           >
-            <span className="relative z-10">Book Your Appointment Now</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button>
+            <motion.button
+              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-xl font-industrial font-bold text-lg transition-all duration-300 shadow-lg shadow-red-500/20 relative overflow-hidden group text-sm md:text-[16px]"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 15px 40px -10px rgba(220, 38, 38, 0.4)",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">Book Your Appointment Now</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.button>
 
-          <p className="text-gray-400 font-modern mt-4 text-sm">
-            No hidden fees • Free initial inspection • 12-month warranty
-          </p>
-        </motion.div>
+            <p className="text-gray-400 font-modern mt-4 text-sm">
+              No hidden fees • Free initial inspection • 12-month warranty
+            </p>
+          </motion.div>
+        </Link>
       </div>
     </section>
   );

@@ -44,7 +44,7 @@ const GetInTouch = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-           backgroundImage: `url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
           }}
         >
           {/* Linear Gradient Overlay */}
@@ -90,10 +90,10 @@ const GetInTouch = () => {
             variants={textVariants}
             className="text-lg sm:text-xl md:text-2xl font-modern text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            Ready to give your car the care it deserves?
+            Ready to give your car or bike the care it deserves?.
             <br className="hidden sm:block" />
-            Contact FixinMoto for a free consultation or to book a service
-            appointment today.
+            Contact DetailXMechanics today for a free consultation or to
+            book your service
           </motion.p>
 
           {/* CTA Buttons */}
@@ -140,16 +140,28 @@ const GetInTouch = () => {
             className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 text-white"
           >
             <div className="text-center">
-              <div className="text-xl sm:text-2xl font-tech font-bold text-red-500 mb-1 sm:mb-2">24/7</div>
-              <div className="text-sm sm:text-base font-modern text-gray-300">Support</div>
+              <div className="text-xl sm:text-2xl font-tech font-bold text-red-500 mb-1 sm:mb-2">
+                24/7
+              </div>
+              <div className="text-sm sm:text-base font-modern text-gray-300">
+                Support
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-xl sm:text-2xl font-tech font-bold text-red-500 mb-1 sm:mb-2">Free</div>
-              <div className="text-sm sm:text-base font-modern text-gray-300">Consultation</div>
+              <div className="text-xl sm:text-2xl font-tech font-bold text-red-500 mb-1 sm:mb-2">
+                Free
+              </div>
+              <div className="text-sm sm:text-base font-modern text-gray-300">
+                Consultation
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-xl sm:text-2xl font-tech font-bold text-red-500 mb-1 sm:mb-2">Quick</div>
-              <div className="text-sm sm:text-base font-modern text-gray-300">Response</div>
+              <div className="text-xl sm:text-2xl font-tech font-bold text-red-500 mb-1 sm:mb-2">
+                Quick
+              </div>
+              <div className="text-sm sm:text-base font-modern text-gray-300">
+                Response
+              </div>
             </div>
           </motion.div>
         </motion.div>

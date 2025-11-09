@@ -6,7 +6,7 @@ const WhatsAppFloat = () => {
 
   const phoneNumber = "919392338987"; // Your WhatsApp number with country code
   const message =
-    "Hello FixinMoto! 🚗 I'm interested in your automotive services. Could you please provide more information about:"; // Default message
+    "Hello DetailXMechanic! 🚗 I'm interested in your automotive services. Could you please provide more information about:"; // Default message
 
   const handleWhatsAppClick = (customMessage = "") => {
     const finalMessage = customMessage || message;
@@ -24,17 +24,17 @@ const WhatsAppFloat = () => {
     {
       text: "Car Service Appointment",
       message:
-        "Hello FixinMoto! 🚗 I'd like to book a car service appointment. Please share available slots.",
+        "Hello DetailXMechanic! 🚗 I'd like to book a car service appointment. Please share available slots.",
     },
     {
       text: "Bike Repair Quote",
       message:
-        "Hello FixinMoto! 🏍️ I need a quote for bike repair services. Can you help?",
+        "Hello DetailXMechanic! 🏍️ I need a quote for bike repair services. Can you help?",
     },
     {
       text: "Service Pricing",
       message:
-        "Hello FixinMoto! 💰 Could you share your service pricing for regular maintenance?",
+        "Hello DetailXMechanic! 💰 Could you share your service pricing for regular maintenance?",
     },
   ];
 
@@ -154,7 +154,7 @@ const WhatsAppFloat = () => {
 
           {/* Tooltip */}
           <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white font-modern text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-            Contact FixinMoto
+            Contact DetailXMechanic
           </div>
         </motion.button>
       </motion.div>

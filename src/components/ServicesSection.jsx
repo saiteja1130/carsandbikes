@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 export const servicesData = {
   car: [
@@ -510,7 +510,7 @@ const ServicesSection = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(0);
   // NEW STATE: Control the number of cards shown based on screen size
-  const [maxServicesToShow, setMaxServicesToShow] = useState(8); 
+  const [maxServicesToShow, setMaxServicesToShow] = useState(8);
   const navigate = useNavigate();
 
   const activeGroups = servicesData[activeTab];
@@ -520,7 +520,7 @@ const ServicesSection = () => {
     // Function to update the maximum number of services to show
     const updateMaxServices = () => {
       // Set to 4 for screens smaller than the 'sm' breakpoint (640px), otherwise 8
-      setMaxServicesToShow(window.innerWidth < 640 ? 4 : 8); 
+      setMaxServicesToShow(window.innerWidth < 640 ? 4 : 8);
     };
 
     // Initial check
@@ -533,7 +533,6 @@ const ServicesSection = () => {
     return () => window.removeEventListener("resize", updateMaxServices);
   }, []); // Run only once on mount to set up the listener
 
-
   // Get current category services and limit to 4/8 based on maxServicesToShow
   const currentServices = activeGroups[selectedCategory]?.services
     .map((service) => ({
@@ -541,10 +540,11 @@ const ServicesSection = () => {
       title: service,
     }))
     // 2. 🎯 Use maxServicesToShow for the slice limit
-    .slice(0, maxServicesToShow); 
+    .slice(0, maxServicesToShow);
 
   // Check if there are more services available (compares to the responsive limit)
-  const hasMoreServices = activeGroups[selectedCategory]?.services.length > maxServicesToShow;
+  const hasMoreServices =
+    activeGroups[selectedCategory]?.services.length > maxServicesToShow;
 
   // Section entrance animation
   const sectionVariants = {
@@ -655,9 +655,16 @@ const ServicesSection = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-500/5 via-black to-black"></div>
       </motion.div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10"> {/* **UPDATED: px-4 for small screens** */}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {" "}
+        {/* **UPDATED: px-4 for small screens** */}
         {/* Section Header - Title and Subtitle */}
-        <motion.div variants={tabVariants} className="text-center mb-16 md:mb-20"> {/* **UPDATED: mb-16 for tighter spacing on mobile** */}
+        <motion.div
+          variants={tabVariants}
+          className="text-center mb-16 md:mb-20"
+        >
+          {" "}
+          {/* **UPDATED: mb-16 for tighter spacing on mobile** */}
           <motion.h2
             className="text-4xl sm:text-5xl md:text-7xl font-tech font-black text-white mb-4 md:mb-6" // **UPDATED: Responsive font size**
             variants={tabVariants}
@@ -672,13 +679,14 @@ const ServicesSection = () => {
             craftsmanship
           </motion.p>
         </motion.div>
-
         {/* Main Tab Navigation - Car/Bike */}
         <motion.div
           className="flex justify-center mb-8 md:mb-12" // **UPDATED: Reduced margin on mobile**
           variants={tabVariants}
         >
-          <div className="inline-flex items-center gap-1 sm:gap-2 p-1 sm:p-2 bg-black/50 border border-red-900/50 rounded-xl sm:rounded-2xl backdrop-blur-sm"> {/* **UPDATED: smaller gap/padding on mobile** */}
+          <div className="inline-flex items-center gap-1 sm:gap-2 p-1 sm:p-2 bg-black/50 border border-red-900/50 rounded-xl sm:rounded-2xl backdrop-blur-sm">
+            {" "}
+            {/* **UPDATED: smaller gap/padding on mobile** */}
             {["car", "bike"].map((tab) => (
               <motion.button
                 key={tab}
@@ -686,7 +694,8 @@ const ServicesSection = () => {
                   setActiveTab(tab);
                   setSelectedCategory(0);
                 }}
-                className={`relative px-4 sm:px-8 py-2 sm:py-4 rounded-lg sm:rounded-xl font-industrial font-bold text-sm sm:text-sm uppercase tracking-wider transition-all duration-300 ${ // **UPDATED: smaller padding/font on mobile**
+                className={`relative px-4 sm:px-8 py-2 sm:py-4 rounded-lg sm:rounded-xl font-industrial font-bold text-sm sm:text-sm uppercase tracking-wider transition-all duration-300 ${
+                  // **UPDATED: smaller padding/font on mobile**
                   activeTab === tab
                     ? "text-white"
                     : "text-gray-500 hover:text-gray-300"
@@ -709,7 +718,6 @@ const ServicesSection = () => {
             ))}
           </div>
         </motion.div>
-
         {/* Category Tabs */}
         <AnimatePresence mode="wait">
           {activeGroups?.length > 0 && (
@@ -727,7 +735,8 @@ const ServicesSection = () => {
                   key={`${activeTab}-${index}`}
                   variants={categoryTabVariants}
                   onClick={() => setSelectedCategory(index)}
-                  className={`px-4 sm:px-8 py-2 sm:py-3 rounded-lg sm:rounded-xl font-industrial font-semibold text-sm sm:text-base transition-all duration-300 min-w-[150px] sm:min-w-[200px] text-center ${ // **UPDATED: smaller padding/font/min-width on mobile**
+                  className={`px-4 sm:px-8 py-2 sm:py-3 rounded-lg sm:rounded-xl font-industrial font-semibold text-sm sm:text-base transition-all duration-300 min-w-[150px] sm:min-w-[200px] text-center ${
+                    // **UPDATED: smaller padding/font/min-width on mobile**
                     selectedCategory === index
                       ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-xl shadow-red-500/30" // **UPDATED: reduced shadow intensity**
                       : "bg-gray-900/80 text-gray-300 hover:bg-gray-800 hover:text-white border border-gray-700"
@@ -742,13 +751,13 @@ const ServicesSection = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   {/* Clean up category label for tab: show first two words or full category if shorter */}
-                  {group.category.split(" ").slice(0, 2).join(" ") + (group.category.split(" ").length > 2 ? '...' : '')}
+                  {group.category.split(" ").slice(0, 2).join(" ") +
+                    (group.category.split(" ").length > 2 ? "..." : "")}
                 </motion.button>
               ))}
             </motion.div>
           )}
         </AnimatePresence>
-
         {/* Services Grid - Limited to 4 on mobile, 8 on desktop */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" // **UPDATED: grid layout for small screens, gap sizing**
@@ -776,9 +785,11 @@ const ServicesSection = () => {
                   className="relative group cursor-pointer serviceCard"
                 >
                   {/* Animated Border */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm group-hover:blur-0"></div> {/* **UPDATED: rounded size** */}
-
-                  <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-800 group-hover:border-red-500/50 transition-all duration-300 h-full overflow-hidden"> {/* **UPDATED: padding/rounded size** */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm group-hover:blur-0"></div>{" "}
+                  {/* **UPDATED: rounded size** */}
+                  <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-800 group-hover:border-red-500/50 transition-all duration-300 h-full overflow-hidden">
+                    {" "}
+                    {/* **UPDATED: padding/rounded size** */}
                     {/* Hover Effect Overlay */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-transparent opacity-0 group-hover:opacity-100"
@@ -788,7 +799,6 @@ const ServicesSection = () => {
                       }}
                       transition={{ duration: 0.3 }}
                     />
-
                     {/* Animated Background Icon */}
                     <motion.div
                       className="absolute -right-6 -bottom-6 opacity-5 group-hover:opacity-10 transition-opacity duration-500" // **UPDATED: icon position**
@@ -799,12 +809,13 @@ const ServicesSection = () => {
                       transition={{ duration: 0.5 }}
                     >
                       {/* **UPDATED: Responsive Icon Size** */}
-                      {React.cloneElement(icon, { width: 100, height: 100 })} 
+                      {React.cloneElement(icon, { width: 100, height: 100 })}
                     </motion.div>
-
                     {/* Content */}
                     <div className="relative z-10">
-                      <div className="flex items-start gap-3 sm:gap-4 mb-2 sm:mb-4"> {/* **UPDATED: smaller gap/margin on mobile** */}
+                      <div className="flex items-start gap-3 sm:gap-4 mb-2 sm:mb-4">
+                        {" "}
+                        {/* **UPDATED: smaller gap/margin on mobile** */}
                         <motion.div
                           className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-red-600 to-red-700 shadow-lg shadow-red-500/20" // **UPDATED: icon container size/rounded**
                           whileHover={{
@@ -818,10 +829,9 @@ const ServicesSection = () => {
                           {React.cloneElement(icon, {
                             width: 20, // 20px on mobile
                             height: 20,
-                            className: "sm:w-6 sm:h-6" // 24px on sm+
+                            className: "sm:w-6 sm:h-6", // 24px on sm+
                           })}
                         </motion.div>
-
                         <motion.h3
                           className="text-white font-modern font-bold text-base sm:text-lg leading-snug flex-1 pt-0.5" // **UPDATED: Responsive font size**
                           initial={false}
@@ -863,10 +873,14 @@ const ServicesSection = () => {
             })}
           </AnimatePresence>
         </motion.div>
-
         {/* View More Button - Only show if there are more services */}
         {hasMoreServices && (
-          <motion.div className="text-center mt-8 md:mt-12" variants={tabVariants}> {/* **UPDATED: margin** */}
+          <motion.div
+            className="text-center mt-8 md:mt-12"
+            variants={tabVariants}
+          >
+            {" "}
+            {/* **UPDATED: margin** */}
             <motion.button
               onClick={handleViewMore}
               whileHover={{
@@ -886,20 +900,23 @@ const ServicesSection = () => {
             </motion.button>
           </motion.div>
         )}
-
-        {/* CTA Button */}
-        <motion.div className="text-center mt-6 md:mt-8" variants={tabVariants}> {/* **UPDATED: margin** */}
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.4)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 sm:px-12 py-3 sm:py-4 bg-transparent text-white font-industrial text-sm sm:text-base font-bold rounded-xl border-2 border-red-500 hover:bg-red-500 transition-all duration-300" // **UPDATED: padding/font size**
+        <Link to="/booknow">
+          <motion.div
+            className="text-center mt-6 md:mt-8"
+            variants={tabVariants}
           >
-            <span className="relative z-10 buttonText">BOOK APPOINTMENT</span>
-          </motion.button>
-        </motion.div>
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 40px -10px rgba(220, 38, 38, 0.4)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 sm:px-12 py-3 sm:py-4 bg-transparent text-white font-industrial text-sm sm:text-base font-bold rounded-xl border-2 border-red-500 hover:bg-red-500 transition-all duration-300" // **UPDATED: padding/font size**
+            >
+              <span className="relative z-10 buttonText">BOOK APPOINTMENT</span>
+            </motion.button>
+          </motion.div>
+        </Link>
       </div>
     </motion.section>
   );

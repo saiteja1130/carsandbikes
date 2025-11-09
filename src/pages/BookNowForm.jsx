@@ -80,6 +80,7 @@ const BookNowForm = () => {
     }
 
     const sendData = new FormData();
+    sendData.append("formType", "booking");
     sendData.append("name", formData.name);
     sendData.append("phone", formData.phone);
     sendData.append("vehicle", formData.vehicleName);
