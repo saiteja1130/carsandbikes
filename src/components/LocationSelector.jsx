@@ -6,7 +6,7 @@ const LocationSection = () => {
   const branchInfo = {
     name: "MIYAPUR",
     address: "Miyapur Main Road, Telangana 500049",
-    phone: "+91 9876543210",
+    phone: "+91 93923 38987",
     coordinates: {
       lat: 17.5169014,
       lng: 78.3428304,
@@ -114,7 +114,7 @@ const LocationSection = () => {
                   </motion.button>
 
                   {/* Directions Button */}
-                  <motion.button
+                  {/* <motion.button
                     onClick={handleGetDirections}
                     className="flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-3 sm:py-4 border-2 border-red-600 text-white font-industrial font-bold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl hover:bg-red-600 transition-all duration-300 group flex-1 min-w-0"
                     whileHover={{ scale: 1.05 }}
@@ -122,7 +122,7 @@ const LocationSection = () => {
                   >
                     <FiNavigation className="text-base sm:text-lg md:text-xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
                     <span className="truncate">Get Directions</span>
-                  </motion.button>
+                  </motion.button> */}
                 </div>
               </div>
 

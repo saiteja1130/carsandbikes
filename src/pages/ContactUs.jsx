@@ -286,7 +286,7 @@ const ContactUs = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="+91 9876543210"
+                          placeholder="+91 99999999"
                           required
                           className="w-full p-4 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 transition-all duration-300 font-industrial-400"
                         />

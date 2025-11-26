@@ -98,25 +98,11 @@ const Header = () => {
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="relative z-10">DetailXMechanic</span>       
-            <motion.span
-              className="text-red-500 ml-1"
-              animate={{
-                scale: [1, 1.2, 1],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            >
-                            .          
-            </motion.span>
-            <motion.div
+            <img src={Logo} className="w-52 sm:w-42 md:w-52" />     
+            {/* <motion.div
               className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full group-hover:w-full transition-all duration-300"
               whileHover={{ width: "100%" }}
-            />
+            /> */}
           </motion.div>
         </Link>
         <LayoutGroup>

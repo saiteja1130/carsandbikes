@@ -8,6 +8,7 @@ import {
   FiFacebook,
   FiPhone,
 } from "react-icons/fi";
+import Logo from "../../assets/logo.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -38,15 +39,10 @@ const Footer = () => {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            {/* Logo */}
             <div className="mb-4 sm:mb-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-tech font-black text-white">
-                DetailX<span className="text-red-500">Mechanic</span>
-              </h2>
-              <div className="w-10 sm:w-12 h-0.5 sm:h-1 bg-red-500 mt-1 sm:mt-2"></div>
+              <img src={Logo} className="w-52 sm:w-42 md:w-52" />
             </div>
 
-            {/* Address */}
             <div className="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
               <FiMapPin className="text-red-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
               <div>
@@ -63,7 +59,7 @@ const Footer = () => {
               <FiPhone className="text-red-500 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
               <div>
                 <p className="text-gray-300 font-modern text-sm sm:text-base">
-                  +91 9876543210
+                  +91 93923 38987
                 </p>
               </div>
             </div>
@@ -120,7 +116,7 @@ const Footer = () => {
               >
                 <FiMail className="text-gray-300 group-hover:text-red-500 transition-colors duration-300 text-sm sm:text-base" />
                 <span className="text-gray-300 group-hover:text-white font-modern text-xs sm:text-sm">
-                  detailxmechanicc@gmail.com{" "}
+                  detailxmechanic@gmail.com{" "}
                 </span>
               </motion.a>
             </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FiPhone, FiCalendar } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const GetInTouch = () => {
   const textVariants = {
@@ -102,26 +103,28 @@ const GetInTouch = () => {
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
           >
             {/* Book Appointment Button */}
-            <motion.button
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-industrial font-bold text-base sm:text-lg rounded-xl overflow-hidden group w-full sm:w-auto min-w-[180px] sm:min-w-[200px]"
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                <FiCalendar className="text-lg sm:text-xl" />
-                Book Appointment
-              </span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
+            <Link to="/booknow">
+              <motion.button
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-industrial font-bold text-base sm:text-lg rounded-xl overflow-hidden group w-full sm:w-auto min-w-[180px] sm:min-w-[200px]"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+                  <FiCalendar className="text-lg sm:text-xl" />
+                  Book Appointment
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+            </Link>
 
             {/* Contact Us Button */}
-            <motion.button
+            {/* <motion.button
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
@@ -131,7 +134,7 @@ const GetInTouch = () => {
                 <FiPhone className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300" />
                 Contact Us
               </span>
-            </motion.button>
+            </motion.button> */}
           </motion.div>
 
           {/* Additional Info */}

@@ -15,7 +15,7 @@ const AboutUs = () => {
   const branchInfo = {
     name: "Miyapur Branch",
     address: "Miyapur Main Road, Telangana 500049",
-    phone: "+91 9876543210",
+    phone: "+91 93923 38987",
     hours: "Mon-Sun: 8:00 AM - 8:00 PM",
     email: "detailxmechanicc@gmail.com",
   };
