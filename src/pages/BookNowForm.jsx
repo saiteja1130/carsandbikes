@@ -7,6 +7,7 @@ import {
   FiCalendar,
   FiCheckSquare,
 } from "react-icons/fi";
+import { servicesData } from "../assetsdata/services";
 
 // --- Icon Components (unchanged) ---
 const BikeIcon = () => (
@@ -119,139 +120,7 @@ const BookNowForm = () => {
     }
   };
 
-  const servicesData = {
-    car: [
-      {
-        category: "Car Mechanical Services & Works",
-        services: [
-          "Complete engine repair & tuning",
-          "Clutch, brake & suspension works",
-          "Gearbox service & replacement",
-          "Oil change & filter replacement",
-          "Electrical wiring & sensor diagnostics",
-          "Battery check & replacement",
-          "Cooling system & radiator service",
-          "Steering & wheel alignment",
-          "AC gas refilling & AC system repair",
-          "Fuel injector & throttle body cleaning",
-          "Timing belt & chain replacement",
-          "Noise & vibration issue diagnosis",
-          "Underbody inspection & protection coating",
-          "Rat repellent & rust coating",
-          "LED & high-illumination headlight installation",
-          "Car detailing, interior cleaning & polishing",
-          "Complete car restoration & performance upgrades",
-        ],
-      },
-      {
-        category: "Car Interior Accessories & Works",
-        services: [
-          "Ambient light setup (single & multi-color)",
-          "Star roof lighting installation",
-          "Dashboard wrapping & interior styling",
-          "Premium seat cover & leather upholstery",
-          "Roof liner replacement & cleaning",
-          "Steering cover & custom wrapping",
-          "Floor lamination & 7D/9D mat fitting",
-          "Door pad restoration & leather finishing",
-          "Interior detailing & deep cleaning",
-          "Sound damping & noise cancellation works",
-          "Android touchscreen music system",
-          "Reverse camera & parking sensor fitting",
-          "Premium speaker & woofer installation",
-          "Armrest installation & cup holder setup",
-          "LED foot lights & mood lighting",
-          "Sunshade & window curtain fitting",
-          "Perfume diffuser & interior accessories setup",
-          "Custom interior modification & theme design",
-          "Side foot step installation (SUV & MUVs)",
-        ],
-      },
-      {
-        category: "Car Detailing & Restoration Services",
-        services: [
-          "Full body foam wash & deep cleaning",
-          "Exterior polishing & gloss enhancement",
-          "Interior deep cleaning & vacuuming",
-          "Dashboard, roof & seat restoration",
-          "Ceramic coating",
-          "Graphene coating (deep gloss & slickness)",
-          "Matte & gloss PPF installation (8-year warranty)",
-          "Headlight & taillight restoration",
-          "Underbody rust coating & protection",
-          "Engine bay cleaning & shine treatment",
-          "Plastic & rubber parts restoration",
-          "Paint correction & scratch removal",
-          "Full body denting & painting works",
-          "Alloy wheel cleaning & painting",
-          "Noise cancellation damping work",
-          "Car interior & exterior customization",
-          "Full car restoration to showroom finish",
-        ],
-      },
-    ],
-    bike: [
-      {
-        category: "Bike Mechanical Services",
-        services: [
-          "Complete engine repair & tuning",
-          "Clutch & brake overhaul",
-          "Oil change & filter replacement",
-          "Chain & sprocket replacement",
-          "Suspension repair & setup",
-          "Carburetor & fuel injection cleaning",
-          "Battery check & replacement",
-          "Electrical wiring & lighting works",
-          "Wheel alignment & balancing",
-          "Gearbox repair & maintenance",
-          "Cooling system check-up",
-          "Tyre replacement & puncture repair",
-          "Noise & vibration issue diagnosis",
-          "Full bike restoration & repainting",
-        ],
-      },
-      {
-        category: "Bike Restoration Services",
-        services: [
-          "Complete engine restoration & tuning",
-          "Full-body repainting & denting work",
-          "Chassis cleaning, repair & coating",
-          "Rust removal & anti-rust protection",
-          "Electrical wiring restoration",
-          "Suspension & brake system rebuild",
-          "Carburetor & fuel system cleaning",
-          "Clutch, gear & bearing replacement",
-          "Seat & interior re-upholstery",
-          "Alloy & wheel restoration",
-          "Headlight & indicator replacement",
-          "Chrome part polishing & renewal",
-          "Custom paint & graphic designs",
-          "Matte / Gloss PPF & ceramic coating",
-          "Final detailing & finishing touches",
-        ],
-      },
-      {
-        category: "Bike Detailing Services",
-        services: [
-          "Full-body foam wash & deep cleaning",
-          "Premium polishing & gloss enhancement",
-          "Ceramic coating",
-          "Matte & gloss PPF installation",
-          "Chain cleaning & lubrication",
-          "Engine bay cleaning & shine treatment",
-          "Plastic & rubber part restoration",
-          "Headlight & taillight restoration",
-          "Rust removal & metal protection",
-          "Underbody wash & protection coat",
-          "Water spot & swirl mark removal",
-          "Paint correction & scratch removal",
-          "Interior panel & seat cleaning",
-          "Bike waxing & UV protection",
-          "Chrome parts polishing & shine restore",
-        ],
-      },
-    ],
-  };
+  
 
   // Updated responsive classes
   const submitButtonClass =

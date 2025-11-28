@@ -8,7 +8,7 @@ import {
   FiFacebook,
   FiPhone,
 } from "react-icons/fi";
-import Logo from "../../assets/logo.jpg";
+import Logo from "../assets/logo.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { FiMenu, FiX, FiInfo, FiHome, FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.jpg";
+import Logo from "../assets/logo.jpg";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);

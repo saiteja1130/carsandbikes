@@ -10,9 +10,9 @@ import {
   FaHeadset,
   FaStar,
 } from "react-icons/fa";
-import mainImage from "../../assets/whychooseus.jpg";
+import mainImage from "../assets/whychooseus.jpg";
 import { Link } from "react-router-dom";
-// import smallImage from "../../assets/whychoose1.jpg";
+// import smallImage from "../assets/whychoose1.jpg";
 
 const WhyChooseUs = () => {
   const features = [
